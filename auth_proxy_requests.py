@@ -1,3 +1,10 @@
+""" 
+BASIC AUTH
+"""
+proxies = { 'https' : 'https://user:password@proxyip:port' } 
+r = requests.get('https://url', proxies=proxies)
+print(r.status_code)
+
 # option 1 Using HTTPProxyAuth
 from requests.auth import HTTPProxyAuth
 proxyDict = {
