@@ -23,7 +23,7 @@ def params_parser(url, params, show_result=False):
     params_merger = urlencode({**current_params, **params})
     new_url = parsed._replace(query=params_merger).geturl()
     if show_result == False:
-        return
+        pass
     else:
         print(f"parsed URL is: {new_url}")
     return str(new_url)
