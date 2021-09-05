@@ -1,14 +1,5 @@
-import os
-import random
-import zipfile
-
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-
-
 def get_driver(use_proxy=False, user_agent: list = None, ip_proxy: str = None, port: str = None, username: str = None,
-               password: str = None):
+               password: str = None, debug=True):
     """Selenium setup"""
     options = Options()
 
@@ -77,11 +68,15 @@ def get_driver(use_proxy=False, user_agent: list = None, ip_proxy: str = None, p
 
         options.extensions(plugin_file)
         options.add_argument(argument=f'argument={random.choice(user_agent)}')
+        if not debug:
+            options.add_argument(argument='--headless')
         driver = webdriver.Chrome(ChromeDriverManager(path='temp/driver_path').install(), options=options)
         return driver
 
     else:
         options.add_argument(argument=f'user-agent={random.choice(user_agent)}')
         options.add_argument(argument='--incognito')
+        if not debug:
+            options.add_argument(argument='--headless')
         driver = webdriver.Chrome(ChromeDriverManager(path='temp/driver_path').install(), options=options)
         return driver
