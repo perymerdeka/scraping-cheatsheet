@@ -8,3 +8,5 @@ def download_data():
     filename = "test123" + "." extension_type
     d = {'colName': sample_data}
     return excel.make_response_from_dict(d, file_type=extension_type, file_name=filename)
+
+# docs: http://flask.pyexcel.org/en/latest/
